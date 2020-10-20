@@ -1,4 +1,37 @@
 Technical indicators: actual numbers directly related to stock movement, versus developments in the companies themselves
 
+///////////////////////////////////
+
 RSI: Relative Strength Index
-More notes...
+	Measures the magnitude of recent price changes to evaluate overbought or oversold conditions in the price of a stock or other asset. It's displayed as an oscillator (the line moves between two extremes) from 0 to 100. Traditionally, values of 70 or above means a security is becoming overbought or overvalued and may be primed for a trend reversal or corrective pullback in price. 30 or lower indicates an oversold or undervalued condition.
+	Calculation: two parts
+		1. RSI(step1)=100-(100/(1+meangain/meanloss))
+		The standard is to use 14 period/days, and meangain is the average percent gain for the days that the stock gained, and visa versa for loss.
+		2. RSI(step2)=100-(100/(1+((previousmeangain*13)+currentgain)/(-(previousmeanloss*13)+currentloss)))
+		I'm confused on this second part (???) It's called smoothing of the first step's calculation.
+
+OBV: On-Balance Volume
+	Measures the momentum by using volume flow to predict changes in stock price. The applications of this one are more confusing. The slope of the graph is what matters. It's used to estimate the relationship between "smart money" (big investors) and small/individual investors. I'll need to dig into this one more, especially since I'm unsure how our simulator should use this stat.
+	Calculation: confusing lol
+		OBV=OBV(prev)+{volume, if close>close(prev); 0, if close=close(prev); -volume, if close<close(prev).
+		Note that OBV = current on-balance volume level, OBV(prev) = previous on-balance volume level, volume = latest trading volume amount. To clear the confusing part, close = today's closing price, close(prev) = yesterday's closing price.
+
+/////////////////////////////////////////////
+
+MACD: Moving Average Convergence Divergence
+	Measures the trend-following momentum by showing the relationship between 2 moving averages of a security's price. It's calculated by subtracting the 26-period Exponential Moving Average (EMA) from the 12 period EMA. The 9-day EMA of the MACD is the "signal line" and is plotted on top of the MACD line. Traders buy the security when the MACD crosses above its signal line and visa versa.
+	Calculation: 
+		MACD=12-period EMA - 26-period EMA
+		!Look up how to calculate the EMA, it's more complicated than any of the previous calculations.
+
+////////////////////////////////////
+
+VWAP: Volume Weighted Average Price
+	Measures average price a security has traded at throughout the day based on volume and price.
+	Calculation:
+		VWAP=Sum(Price*Volume)/Sum(Volume)
+		This looks like just a basic average :)
+
+????????????????????????????????????
+
+Bollinger Bands don't seem to fit into the same category as these simple calculation indicators. I'll have to look into it further.
